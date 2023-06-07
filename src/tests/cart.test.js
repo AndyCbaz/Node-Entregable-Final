@@ -17,19 +17,19 @@ beforeAll(async () => {
 });
 
 //test para crear un carrito
-test("POST /carts should create a cart", async () => {
+test("POST /cart should create a cart", async () => {
   const newProduct = await Product.create({
     title: "title false",
     description: "description false",
     brand: "brand false",
-    price: "price false",
+    price: 10,
   });
   const newCart = {
     productId: newProduct.id,
     quantity: 4,
   };
   const resCreate = await request(app)
-    .post("/carts")
+    .post("/cart")
     .send(newCart)
     .set("Authorization", `Bearer ${token}`);
   await newProduct.destroy();
@@ -39,20 +39,20 @@ test("POST /carts should create a cart", async () => {
 });
 
 //test para ver los carritos
-test("GET /carts", async () => {
+test("GET /cart", async () => {
   const resGetAll = await request(app)
-    .get("/carts")
+    .get("/cart")
     .set("Authorization", `Bearer ${token}`);
   expect(resGetAll.status).toBe(200);
 });
 
 //test para actualizar el carrito
-test("PUT /carts/:id", async () => {
+test("PUT /cart/:id", async () => {
   const cartUpdated = {
     quantity: 2,
   };
   const resPut = await request(app)
-    .put(`/carts/${cartId}`)
+    .put(`/cart/${cartId}`)
     .send(cartUpdated)
     .set("Authorization", `Bearer ${token}`);
   expect(resPut.status).toBe(200);
@@ -60,9 +60,9 @@ test("PUT /carts/:id", async () => {
 });
 
 //test para obtener un carrito
-test("GET /carts/:id", async () => {
+test("GET /cart/:id", async () => {
   const resGetOne = await request(app)
-    .get(`/carts/${cartId}`)
+    .get(`/cart/${cartId}`)
     .set("Authorization", `Bearer ${token}`);
   expect(resGetOne.status).toBe(200);
   expect(resGetOne.body.id).toBeDefined()
@@ -70,7 +70,7 @@ test("GET /carts/:id", async () => {
 
 
 //test para borrar carrito
-test('DELETE /carts/:id', async () => { 
-    const resDelete = await request(app).delete(`/carts/${cartId}`).set("Authorization", `Bearer ${token}`);
+test('DELETE /cart/:id', async () => { 
+    const resDelete = await request(app).delete(`/cart/${cartId}`).set("Authorization", `Bearer ${token}`);
     expect(resDelete.status).toBe(204)
  })

@@ -27,7 +27,7 @@ test("POST /products", async () => {
     description:
       "Telefono movile de gama media con gran rendimiento de bateria y carga rapida ademas de tener 128GB de almacenamiento",
     brand: "Huawei",
-    price: "$400",
+    price: 400,
     categoryId: category.id,
   };
   const resPostCreate = await request(app)
@@ -66,7 +66,7 @@ test('POST /products/:id/images should set the products images', async () => {
 //test para actualizar un producto
 test("PUT /products/:id", async () => {
   const productsUpdated = {
-    price: "450",
+    price: 450,
   };
   const resPut = await request(app)
     .put(`/products/${productId}`)
