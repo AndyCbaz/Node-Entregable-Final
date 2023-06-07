@@ -4,10 +4,11 @@ const Product = require('../models/Product');
 const User = require('../models/User');
 const Cart = require('../models/Cart');
 const { raw } = require('express');
+const ProductImg = require('../models/ProductImg');
 
 const getAll = catchError(async(req, res) => {
     const resGetAll = await Purchase.findAll({
-        include: [Product, User],
+        include: [{model: Product, include: ProductImg}, User],
         where: {userId: req.user.id}
     })
     return res.json(resGetAll)

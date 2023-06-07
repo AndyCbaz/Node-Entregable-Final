@@ -12,7 +12,7 @@ router.use("/users",userRouter)
 router.use("/categories",categoryRoute)
 router.use("/products", productRouter)
 router.use("/products_images", productImgRouter)
-router.use("/carts",cartRouter)
+router.use("/cart",cartRouter)
 router.use("/purchases", purchaseRouter)
 
 module.exports = router;
